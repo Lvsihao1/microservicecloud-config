@@ -1,0 +1,75 @@
+﻿spring:
+ profiles:
+  active:
+  - dev
+---
+server:
+  port: 8001
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.lvsihao.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+spring:
+   profiles: dev
+   application:
+    name: microservicecloud-dept 
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clouddb01?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
+    username: root
+    password: DC67e619c13e
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microservicecloud-dept8001
+    prefer-ip-address: true
+info:
+  app.name: lvsihao-microservicecloud
+  company.name: lvsihao.top
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+---
+server:
+  port: 8001
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.lvsihao.entities
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml
+spring:
+   profiles: test
+   application:
+    name: microservicecloud-dept
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver       
+    url: jdbc:mysql://localhost:3306/clouddb02?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
+    username: root
+    password: DC67e619c13e
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+eureka:
+  client: 
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microservicecloud-dept8001
+    prefer-ip-address: true
+info:
+  app.name: lvsihao-microservicecloud
+  company.name: lvsihao.top
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+---
